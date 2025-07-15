@@ -1,0 +1,458 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Dark background from image */
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable scrolling for longer content */
+}
+
+.game-container {
+    background-color: #20203a; /* Slightly lighter dark for container */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px; /* Constrain width to match mobile screenshot */
+    margin-top: 10px; /* Space from top */
+}
+
+/* --- General Button Styles --- */
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Header Bar --- */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3a3a5a;
+    margin-bottom: 15px;
+}
+
+.header-left i {
+    color: #ffd700; /* Gold color for wallet icon */
+    margin-right: 5px;
+}
+
+.header-right .btn-withdraw {
+    background-color: #4a4a6a;
+    color: #e0e0e0;
+    margin-right: 10px;
+}
+.header-right .btn-withdraw:hover {
+    background-color: #5a5a7a;
+}
+
+.header-right .btn-deposit {
+    background-color: #6a0dad; /* Violet */
+    color: #fff;
+}
+.header-right .btn-deposit:hover {
+    background-color: #7b20cc;
+}
+
+/* --- Message Banner --- */
+.message-banner {
+    background-color: #3a3a5a;
+    color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- Wager Options --- */
+.wager-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: #3a3a5a;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.wager-btn {
+    flex-grow: 1;
+    padding: 10px 5px;
+    border: none;
+    background: none;
+    color: #e0e0e0;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wager-btn.active {
+    background-color: #6a0dad; /* Violet */
+    color: #fff;
+    font-weight: bold;
+}
+.wager-btn:not(.active):hover {
+    background-color: #4a4a6a;
+}
+
+/* --- Game Info Section --- */
+.game-info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2a4a;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.game-info-left .game-type {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #90ee90; /* Light green */
+    margin-bottom: 10px;
+}
+
+.color-options {
+    display: flex;
+    gap: 8px;
+}
+
+.color-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #5a5a7a;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.color-btn:hover {
+    transform: scale(1.1);
+}
+.color-btn.green { background-color: #2ecc71; }
+.color-btn.violet { background-color: #8A2BE2; }
+.color-btn.red { background-color: #e74c3c; }
+
+
+.game-info-right {
+    text-align: right;
+}
+
+.game-info-right .label {
+    font-size: 0.9em;
+    color: #b0b0d0;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.countdown-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffd700; /* Gold */
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+#current-period {
+    font-size: 0.9em;
+    color: #b0b0d0;
+}
+
+/* --- Main Number Display --- */
+.main-display {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.large-number-display {
+    width: 120px;
+    height: 120px;
+    line-height: 120px; /* Center text vertically */
+    margin: 0 auto;
+    font-size: 5em;
+    font-weight: bold;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a3a5a, #20203a); /* Gradient background for the circle */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(138, 43, 226, 0.7); /* Inner and outer glow */
+    color: #fff;
+    transition: all 0.3s ease-out; /* Smooth transition for number reveal */
+    display: flex; /* For centering */
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Bet Buttons --- */
+.bet-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.bet-buttons .btn {
+    flex-grow: 1;
+    font-size: 1.2em;
+    padding: 12px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bet-big {
+    background-color: #8A2BE2; /* Violet */
+    color: #fff;
+}
+.bet-big:hover {
+    background-color: #9932CC;
+}
+
+.bet-small {
+    background-color: #2ecc71; /* Green */
+    color: #fff;
+}
+.bet-small:hover {
+    background-color: #33d97d;
+}
+
+/* --- Prediction Section --- */
+.prediction-section {
+    margin-top: 0; /* Override general margin-top for history section */
+    margin-bottom: 20px; /* Space it from next section */
+    padding: 20px;
+    background-color: #2a2a4a;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.prediction-section h2 {
+    color: #ffd700; /* Gold */
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.prediction-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.prediction-input-group label {
+    font-size: 0.9em;
+    color: #b0b0d0;
+}
+
+.prediction-input-group input[type="number"] {
+    background-color: #3a3a5a;
+    border: 1px solid #5a5a7a;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    font-size: 1.1em;
+    width: 80px; /* Adjust width for 3 digits */
+    text-align: center;
+    -moz-appearance: textfield; /* Remove arrows in Firefox */
+}
+/* Remove arrows in Chrome, Safari, Edge */
+.prediction-input-group input::-webkit-outer-spin-button,
+.prediction-input-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.prediction-btn {
+    background-color: #007bff; /* Blue for action */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 8px;
+}
+.prediction-btn:hover {
+    background-color: #0056b3;
+}
+
+.prediction-result p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.prediction-result p span {
+    font-weight: bold;
+    color: #fff;
+}
+
+.prediction-result .number-circle-small {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3a3a5a; /* Default background */
+    border: 1px solid #5a5a7a;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    vertical-align: middle; /* Align with text */
+}
+
+/* --- Game History Section --- */
+.game-history-section {
+    background-color: #2a2a4a;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.history-tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #3a3a5a;
+}
+
+.tab-btn {
+    flex-grow: 1;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    color: #b0b0d0;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #fff;
+    font-weight: bold;
+}
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #6a0dad; /* Violet underline */
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.history-table-container {
+    max-height: 250px; /* Limit height for scroll */
+    overflow-y: auto;
+    border-radius: 8px;
+    background-color: #1a1a2e; /* Darker background for table */
+    border: 1px solid #3a3a5a;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.history-table th, .history-table td {
+    padding: 10px 5px;
+    border-bottom: 1px solid #3a3a5a;
+    color: #d0d0e0;
+}
+
+.history-table th {
+    background-color: #3a3a5a;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: normal;
+    position: sticky;
+    top: 0; /* Sticky header */
+    z-index: 1;
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-table td {
+    background-color: #20203a; /* Darker rows */
+}
+
+/* History item specific styles */
+.number-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.big-small-text {
+    font-weight: bold;
+}
+.big-small-text.outcome-big { color: #8A2BE2; } /* Violet for Big */
+.big-small-text.outcome-small { color: #2ecc71; } /* Green for Small */
+
+
+/* --- Color Classes for Numbers and Dots --- */
+.color-red { background-color: #e74c3c; }
+.color-green { background-color: #2ecc71; }
+.color-red-violet { background-color: #8A2BE2; } /* Red-Violet (like purple) */
+.color-green-violet { background-color: #9932CC; } /* Green-Violet (slightly different purple) */
+
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+}
+
+.pag-btn {
+    background-color: #3a3a5a;
+    color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.pag-btn:hover {
+    background-color: #4a4a6a;
+}
+
+/* Scrollbar styling for history table */
+.history-table-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-table-container::-webkit-scrollbar-track {
+    background: #1a1a2e;
+    border-radius: 10px;
+}
+
+.history-table-container::-webkit-scrollbar-thumb {
+    background: #6a0dad;
+    border-radius: 10px;
+}
+
+.history-table-container::-webkit-scrollbar-thumb:hover {
+    background: #8a2be2;
+}
