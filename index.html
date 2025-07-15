@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalwa VIP - Number Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header-bar">
+            <div class="header-left">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet Balance: $<span id="wallet-balance">0.15</span></span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-withdraw">Withdraw</button>
+                <button class="btn btn-deposit">Deposit</button>
+            </div>
+        </div>
+
+        <div class="message-banner">
+            Our customer service will never send any links to members - if you receive a link, block it.
+        </div>
+
+        <div class="wager-options">
+            <button class="wager-btn active">WinGo 1min</button>
+            <button class="wager-btn">WinGo 3min</button>
+            <button class="wager-btn">WinGo 5min</button>
+            <button class="wager-btn">WinGo 10min</button>
+        </div>
+
+        <div class="game-info-section">
+            <div class="game-info-left">
+                <p class="game-type">WinGo 1min</p>
+                <div class="color-options">
+                    <button class="color-btn green"></button>
+                    <button class="color-btn violet"></button>
+                    <button class="color-btn red"></button>
+                </div>
+            </div>
+            <div class="game-info-right">
+                <span class="label">Time Remaining:</span>
+                <div class="countdown-display">
+                    <span id="countdown-min">00</span>:<span id="countdown-sec">00</span>
+                </div>
+                <span class="label">Period: <span id="current-period">20250715100051765</span></span>
+            </div>
+        </div>
+
+        <div class="main-display">
+            <div id="generated-number" class="number-circle large-number-display"></div>
+        </div>
+
+        <div class="bet-buttons">
+            <button class="btn bet-big">Big</button>
+            <button class="btn bet-small">Small</button>
+        </div>
+
+        <div class="prediction-section game-history-section">
+            <h2>Predict Next Outcome</h2>
+            <div class="prediction-input-group">
+                <label for="predict-period-input">Enter Current Period (Last 3 Digits):</label>
+                <input type="number" id="predict-period-input" placeholder="e.g., 781" maxlength="3">
+                <button class="btn predict-btn" id="predict-button">Predict Next</button>
+            </div>
+            <div class="prediction-result">
+                <p>Predicted Period: <span id="predicted-period">---</span></p>
+                <p>Predicted Number: <span id="predicted-number" class="number-circle-small">?</span></p>
+                <p>Predicted Outcome: <span id="predicted-outcome">---</span></p>
+            </div>
+        </div>
+
+
+        <div class="game-history-section">
+            <div class="history-tabs">
+                <button class="tab-btn active">Game history</button>
+                <button class="tab-btn">Chart</button>
+                <button class="tab-btn">My History</button>
+            </div>
+            <div class="history-table-container">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Number</th>
+                            <th>Big/Small</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-history">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="pag-btn">&lt;</button>
+            <span>1/50</span>
+            <button class="pag-btn">&gt;</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
